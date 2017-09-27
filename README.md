@@ -47,7 +47,7 @@ users:
 Run the script with:
 
 ```
-python user_snuffer.py 
+python user_sniffer.py 
 
 ```
 
