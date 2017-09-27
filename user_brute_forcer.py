@@ -3,7 +3,7 @@ import json
 import yaml
 
 
-class UserSniffer():
+class UserBruteForcer():
     """"
     Class that takes input from
     a YAML file and then attempts to
@@ -107,5 +107,5 @@ class UserSniffer():
 
 
 if __name__ == "__main__":
-    user_sniffer = UserSniffer()
+    user_brute_forcer = UserBruteForcer()
 
