@@ -1,8 +1,8 @@
 
-# Python WebApp Username Sniffer
+# Python WebApp Username Brute Forcer
 
 
-The following tool can be used to sniff for valid usernames
+The following tool can be used to brute force for valid usernames
 where a web application gives some indication if a user is valid
 regardless if the password was wrong.
 
@@ -47,7 +47,7 @@ users:
 Run the script with:
 
 ```
-python user_sniffer.py 
+python user_brute_forcer.py 
 
 ```
 
@@ -57,11 +57,3 @@ Once complete two YAML output files will be generated.
 valid_users.yaml - a list of valid usernames
 
 invalid_users - a list of usernames where no match was found
-
-
-
-
-
-
-
-
