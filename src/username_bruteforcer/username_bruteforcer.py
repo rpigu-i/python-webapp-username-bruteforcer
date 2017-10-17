@@ -49,6 +49,7 @@ class UsernameBruteforcer():
             self.response_key = key['response']['response_key']
             self.valid_response = key['response']['valid_response']
             self.url = key['url']
+            self.method = key['method'].lower()
             self.data[self.user_field] = ""
 
             if key['data'] and key['data'] != None:
@@ -70,8 +71,13 @@ class UsernameBruteforcer():
         for u in users_list:
 
             self.data[self.user_field] = u
-            r = requests.post(self.url, data=self.data)
+            requestMethod = getattr(requests, self.method, None)
 
+            if requestMethod is None:
+                raise ValueError('Method "{method}" is not supported'.format(
+                    method=repr(self.method)))
+
+            r = requestMethod(self.url, data=self.data)
             dictdata = json.loads(r.text)
 
             if dictdata[self.response_key] == self.valid_response:
