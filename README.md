@@ -8,10 +8,7 @@ regardless if the password was wrong.
 
 ## Configuration
 
-The script uses a YAML script for input paramters. This should be called user.yaml
-and be located in the same folder as the script
-
-Note: This will be made an input param in future releases. 
+The script uses a YAML script for input paramters.
 
 The input params should be:
 
@@ -44,11 +41,16 @@ users:
 
 ## Operation
 
+Clone the source code from git and install via pip.
+
+```
+pip install -e python-webapp-username-bruteforcer
+```
+
 Run the script with:
 
 ```
-python user_brute_forcer.py 
-
+python -m username_bruteforcer my_conf.yaml
 ```
 
 
