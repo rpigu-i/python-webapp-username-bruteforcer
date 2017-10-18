@@ -16,6 +16,7 @@ The input params should be:
 * method - the request method
 * user_field - The name of the user input field the API accepts
 * data - a list of other parameters that may be required by the API/App
+* proxies - a list of proxies to be used
 * response - used for recording the response field parameters that indiciate a valid user
 * response_key - nested under response and used for the key to check for a valid/invalid message
 * valid_response - nested under response, the value returned that confirm the a successful guess of a username.
@@ -29,6 +30,11 @@ method: "POST"
 user_field: "userName"
 
 data: null
+
+proxies:
+  http: "http://127.0.0.1:5000"
+  https: "https://127.0.0.1:5000"
+  ftp: "ftp://127.0.0.1:5000"
 
 response:
     response_key: message
