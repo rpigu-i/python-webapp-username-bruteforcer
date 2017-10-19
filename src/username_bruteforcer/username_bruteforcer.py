@@ -52,6 +52,11 @@ class UsernameBruteforcer():
             self.method = key['method'].lower()
             self.data[self.user_field] = ""
 
+            try:
+                self.proxies = key['proxies']
+            except KeyError:
+                self.proxies = None
+
             if key['data'] and key['data'] != None:
                 data_vals = key['data']
                 for k in data_vals:
@@ -77,7 +82,7 @@ class UsernameBruteforcer():
                 raise ValueError('Method "{method}" is not supported'.format(
                     method=repr(self.method)))
 
-            r = requestMethod(self.url, data=self.data)
+            r = requestMethod(self.url, data=self.data, proxies=self.proxies)
             dictdata = json.loads(r.text)
 
             if dictdata[self.response_key] == self.valid_response:
