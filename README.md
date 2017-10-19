@@ -13,6 +13,7 @@ The script uses a YAML script for input paramters.
 The input params should be:
 
 * url - the target URL
+* method - the request method
 * user_field - The name of the user input field the API accepts
 * data - a list of other parameters that may be required by the API/App
 * response - used for recording the response field parameters that indiciate a valid user
@@ -24,6 +25,7 @@ The following YAML demonstrates the above:
 
 ```
 url: "http://some.website/api/v1/login"
+method: "POST"
 user_field: "userName"
 
 data: null
