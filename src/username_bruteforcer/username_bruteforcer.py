@@ -91,13 +91,11 @@ class UsernameBruteforcer():
                 raise ValueError('Method "{method}" is not supported'.format(
                     method=repr(method)))
 
-            if method == "get":
-                r = requestMethod(self.url, params=self.data,
-                                  proxies=self.proxies)
-            else:
-                r = requestMethod(self.url, data=self.data,
-                                  proxies=self.proxies)
+            data_key = 'params' if method == 'get' else 'data'
+            req_params = {'url': self.url,
+                          'proxies': self.proxies, data_key: self.data}
 
+            r = requestMethod(**req_params)
             dictdata = json.loads(r.text)
 
             if dictdata[self.response_key] == self.valid_response:
