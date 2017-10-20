@@ -11,8 +11,8 @@ class UsernameBruteforcer():
     valid on target application
     """
 
-    valid_users = {'users': []}
-    invalid_users = {'users': []}
+    valid_users = {}
+    invalid_users = {}
     yamldump = {}
     user_field = ""
     data = {}
@@ -49,7 +49,6 @@ class UsernameBruteforcer():
             self.response_key = key['response']['response_key']
             self.valid_response = key['response']['valid_response']
             self.url = key['url']
-            self.method = key['method'].lower()
             self.data[self.user_field] = ""
 
             try:
@@ -57,42 +56,59 @@ class UsernameBruteforcer():
             except KeyError:
                 self.proxies = None
 
+            try:
+                self.methods = [m.lower().strip() for m in key['methods']]
+            except KeyError:
+                raise ValueError('Missing "methods" list')
+
             if key['data'] and key['data'] != None:
                 data_vals = key['data']
                 for k in data_vals:
                     self.data[k] = data_vals[k]
 
-            if key['users']:
-                users_list = key['users']
-                self.check_for_valid_users(users_list)
+            try:
+                for m in self.methods:
+                    self.check_for_valid_users(key['users'], m)
+            except KeyError:
+                raise ValueError('Missing "users" list')
 
-    def check_for_valid_users(self, users_list):
+    def check_for_valid_users(self, users_list, method):
         """
         Using input parameters
         test target url/api
         to see if user exists
         """
 
+        self.valid_users[method] = {'users': []}
+        self.invalid_users[method] = {'users': []}
+
         for u in users_list:
 
             self.data[self.user_field] = u
-            requestMethod = getattr(requests, self.method, None)
+            requestMethod = getattr(requests, method, None)
 
             if requestMethod is None:
                 raise ValueError('Method "{method}" is not supported'.format(
-                    method=repr(self.method)))
+                    method=repr(method)))
 
-            r = requestMethod(self.url, data=self.data, proxies=self.proxies)
+            if method == "get":
+                r = requestMethod(self.url, params=self.data,
+                                  proxies=self.proxies)
+            else:
+                r = requestMethod(self.url, data=self.data,
+                                  proxies=self.proxies)
+
             dictdata = json.loads(r.text)
 
             if dictdata[self.response_key] == self.valid_response:
 
-                print "Status code is: "+str(r.status_code)
-                print "Response message is: "+str(r.reason)
-                print "Valid username: "+u
-                self.valid_users['users'].append(u)
+                print "\nMethod is: " + method.upper()
+                print "Status code is: " + str(r.status_code)
+                print "Response message is: " + str(r.reason)
+                print "Valid username: " + u
+                self.valid_users[method]['users'].append(u)
             else:
-                self.invalid_users['users'].append(u)
+                self.invalid_users[method]['users'].append(u)
 
     def dump_yaml_output(self):
         """

@@ -13,8 +13,8 @@ The script uses a YAML script for input paramters.
 The input params should be:
 
 * url - the target URL
-* method - the request method
 * user_field - The name of the user input field the API accepts
+* methods - a list of request methods to use
 * data - a list of other parameters that may be required by the API/App
 * proxies - a list of proxies to be used
 * response - used for recording the response field parameters that indiciate a valid user
