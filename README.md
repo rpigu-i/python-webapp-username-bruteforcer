@@ -26,10 +26,14 @@ The following YAML demonstrates the above:
 
 ```
 url: "http://some.website/api/v1/login"
-method: "POST"
 user_field: "userName"
 
 data: null
+
+methods:
+- POST
+- GET
+- PUT
 
 proxies:
   http: "http://127.0.0.1:5000"
