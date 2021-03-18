@@ -1,6 +1,6 @@
 import argparse
-from gen_logo import Logo
-from username_bruteforcer import UsernameBruteforcer
+from .gen_logo import Logo
+from .username_bruteforcer import UsernameBruteforcer
 
 
 
