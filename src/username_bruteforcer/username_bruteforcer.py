@@ -100,10 +100,10 @@ class UsernameBruteforcer():
 
             if dictdata[self.response_key] == self.valid_response:
 
-                print "\nMethod is: " + method.upper()
-                print "Status code is: " + str(r.status_code)
-                print "Response message is: " + str(r.reason)
-                print "Valid username: " + u
+                print ("\nMethod is: " + method.upper())
+                print ("Status code is: " + str(r.status_code))
+                print ("Response message is: " + str(r.reason))
+                print ("Valid username: " + u)
                 self.valid_users[method]['users'].append(u)
             else:
                 self.invalid_users[method]['users'].append(u)

@@ -56,18 +56,18 @@ users:
 Clone the source code from git and install via pip.
 
 ```
-pip install -e python-webapp-username-bruteforcer
+pip3 install -e python-webapp-username-bruteforcer
 ```
 
 Run the script with:
 
 ```
-python -m username_bruteforcer my_conf.yaml
+python3 -m username_bruteforcer my_conf.yaml
 ```
 
 
 Once complete two YAML output files will be generated.
 
-valid_users.yaml - a list of valid usernames
+`valid_users.yaml` - a list of valid usernames
 
-invalid_users - a list of usernames where no match was found
+`invalid_users` - a list of usernames where no match was found
