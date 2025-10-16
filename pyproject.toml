@@ -1,0 +1,28 @@
+[project]
+name = "username-bruteforcer"
+version = "2.0.0"
+description = "Username bruteforcer for web applications written in Python"
+authors = [
+    {name = "@rpigu-i"}
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.32.0,<3.0.0",
+    "pyyaml>=6.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/rpigu-i/python-webapp-username-bruteforcer"
+Repository = "https://github.com/rpigu-i/python-webapp-username-bruteforcer"
+
+[project.scripts]
+username-bruteforcer = "username_bruteforcer.__main__:main"
+
+[tool.poetry]
+packages = [{include = "username_bruteforcer", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
