@@ -51,17 +51,42 @@ users:
 ```
 
 
-## Operation
+## Installation
 
-Clone the source code from git and install via pip.
+### Using Poetry (Recommended)
 
+Clone the source code from git and install via Poetry:
+
+```bash
+git clone https://github.com/rpigu-i/python-webapp-username-bruteforcer.git
+cd python-webapp-username-bruteforcer
+poetry install
 ```
+
+Run the script with:
+
+```bash
+poetry run username-bruteforcer my_conf.yaml
+```
+
+Or activate the virtual environment first:
+
+```bash
+poetry shell
+username-bruteforcer my_conf.yaml
+```
+
+### Using pip
+
+Clone the source code from git and install via pip:
+
+```bash
 pip3 install -e python-webapp-username-bruteforcer
 ```
 
 Run the script with:
 
-```
+```bash
 python3 -m username_bruteforcer my_conf.yaml
 ```
 
